@@ -20,6 +20,15 @@ it('has correct name', async () => {
     assert.equal(starName, 'My star'); // Assert if the starName property was initialized correctly
 })
 
+it('can change name', async () => {
+    let instance = await StarNotary.deployed();
+     await instance.claimStar({from: owner}); // Calling the Smart Contract function claimStar
+    await instance.changeName('New Name', {from: owner});
+    let starName = await instance.starName.call();
+     assert.equal(starName, 'New Name'); // Verifying if the owner address match with owner of the address
+})
+
+
 // Example test case, it will test is the Smart Contract function claimStar assigned the Star to the owner address
 it('can be claimed', async () => {
     let instance = await StarNotary.deployed(); // Making sure the Smart Contract is deployed and getting the instance.
