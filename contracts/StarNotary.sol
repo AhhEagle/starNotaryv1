@@ -9,6 +9,11 @@ contract StarNotary{
     constructor() public{
         starName = "My star";
     }
+
+    function changeName(string memory _name) public{
+        starName = _name;
+    }
+    
     function claimStar() public{
         starOwner = msg.sender;
         emit starClaimed(starOwner);
