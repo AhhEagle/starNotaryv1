@@ -18,8 +18,9 @@ it('has correct name', async () => {
 })
 
 
-it('has correct name', async () => {
+it('can be claimed', async () => {
     let instance = await StarNotary.deployed();
-    let starName = await instance.starName.call();
-    assert.equal(starName, 'My star');
+    await instance.claimStar({from: owner});
+    let starOwner = await instance.starOwner.call();
+    assert.equal(starOwner, owner);
 })
